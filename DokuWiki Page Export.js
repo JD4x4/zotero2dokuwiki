@@ -118,7 +118,7 @@ function doExport() {
         Zotero.write("\r----\r");
 
         // List the zoteroID 
-        Zotero.write(" z-ref: " + item.key + "\r\r");
+        Zotero.write(" z-ref: " + item.key.toLowerCase() + "\r\r");
 
         // Write related items- unfortunately it doesn't return anything of value to DokuWiki :-(
         /*
