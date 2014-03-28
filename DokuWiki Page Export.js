@@ -98,7 +98,8 @@ function doExport() {
 
         // Begin the Output
         Zotero.write("====" + item.title + "====\r");
-        Zotero.write("<wrap lo>**" + type + "**</wrap> ");
+        Zotero.write("<wrap lo>**" + type + "**</wrap> "); // low-key bold, needs WRAP plugin
+        // Add a DokuWiki footnote citation
         Zotero.write("  ((" + mem.get() + " (" + memdate.get() + "), " + item.title + ", ");
 
         // Check for a url, if none then do a Google Scholar link on the DOI
@@ -110,6 +111,7 @@ function doExport() {
             Zotero.write("[[http://scholar.google.com/scholar?q=" + item.DOI + "]]");
         }
         Zotero.write("))\r\r");
+        // End of footnote citation
 
         // Write the Abstract
         Zotero.write(item.abstractNote + "\r");
@@ -118,7 +120,19 @@ function doExport() {
         // List the zoteroID 
         Zotero.write(" z-ref: " + item.key + "\r\r");
 
-        // Write tags
+        // Write related items- unfortunately it doesn't return anything of value to DokuWiki :-(
+        /*
+        if(item.related && item.related.length) {
+            var relatedString = "";
+			for(var i in item.related) {
+               var relate = item.related[i];
+               relatedString += "Related: " + relate + "\r";
+            }
+            Zotero.write(relatedString + "\r");
+        }
+        */
+
+        // Write tags- needs Tag plugin
         if(item.tags && item.tags.length) {
             var tagString = "";
 			for(var i in item.tags) {
