@@ -79,7 +79,7 @@ function doExport() {
     while (item = Zotero.nextItem()) {
         var mem = new Mem(item);
         var memdate = new Mem(item);
-        Zotero.write("[[" + item.key + "|" + item.title + "]],");
+        Zotero.write("[[" + item.key.toLowerCase() + "|" + item.title + "]],");
         var library_id = item.libraryID ? item.libraryID : 0;
         if (item.creators.length >0){
             mem.set(item.creators[0].lastName);
