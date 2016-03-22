@@ -88,8 +88,8 @@ function doExport() {
 
 
         // Begin the Output
-        Zotero.write("$==" + item.key + "==$\r"); //Used to split export into multiple files.
-	Zotero.write("======" + item.title + "======\r");
+        Zotero.write("$==" + item.key + "==$\n"); //Used to split export into multiple files.
+	Zotero.write("======" + item.title + "======\n");
         Zotero.write("**" + type + "**"); // low-key bold
         // Add a DokuWiki footnote citation
         Zotero.write("  ((" + mem.get() + " (" + memdate.get() + "), " + item.title + ", ");
@@ -102,18 +102,18 @@ function doExport() {
         else {
             Zotero.write("[[http://scholar.google.com/scholar?q=" + item.DOI + "]]");
         }
-        Zotero.write("))\r\r");
+        Zotero.write("))\n\n");
         // End of footnote citation
 
         // Write the Abstract
         if (item.abstractNote != "") {
-		Zotero.write(item.abstractNote + "\r");
-        	Zotero.write("\r----\r");
+		Zotero.write(item.abstractNote + "\n");
+        	Zotero.write("\n----\n");
 	}
 
         // List the zoteroID 
-        Zotero.write(" z-ref: [[zotero://select/items/0_"+item.key+ "|" + item.key.toLowerCase() + "]]\r\r");
-	Zotero.write("[[zotero:"+item.key+":notes | Notes]]\r\r");
+        Zotero.write(" z-ref: [[zotero://select/items/0_"+item.key+ "|" + item.key.toLowerCase() + "]]\n\n");
+	Zotero.write("[[zotero:"+item.key+":notes | Notes]]\n\n");
 
         // Write tags- needs Tag plugin
         if(item.tags && item.tags.length) {
@@ -127,14 +127,14 @@ function doExport() {
 
 	// Write notes
 	if(item.notes && item.notes.length) {
-		Zotero.write("\r=== Highlights ===\r");
+		Zotero.write("\n=== Highlights ===\n");
 		for (var i in item.notes){
 			Zotero.write("<HTML>");
 			Zotero.write(item.notes[i].note);
-			Zotero.write("</HTML>\r\r");
+			Zotero.write("</HTML>\n\n");
 		}
 	}
 
-	Zotero.write("\r\r");
+	Zotero.write("\n\n");
 	}
 }
